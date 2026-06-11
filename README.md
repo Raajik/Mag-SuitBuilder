@@ -1,8 +1,12 @@
 # Mag-SuitBuilder (Raajik fork)
 
-Windows desktop tool for building optimal armor suits from Decal/Mag-Tools inventory exports. Forked from [Mag-nus/Mag-Plugins](https://github.com/Mag-nus/Mag-Plugins) **Mag-SuitBuilder v2.1.4** (upstream tree currently at 2.1.5 on `main`).
+Windows desktop tool for building optimal armor suits from Decal/Mag-Tools inventory exports. Forked from [Mag-nus/Mag-Plugins](https://github.com/Mag-nus/Mag-Plugins) **Mag-SuitBuilder v2.1.4**.
 
 Original work © Mag-nus (LGPL 2.1 — see `license.md`). Fork changes © Raajik.
+
+**Releases:** [github.com/Raajik/Mag-SuitBuilder/releases](https://github.com/Raajik/Mag-SuitBuilder/releases)
+
+A convenience copy also lives in [ace-raaj-mods `tools/Mag-SuitBuilder/`](https://github.com/Raajik/ace-raaj-mods/tree/main/tools/Mag-SuitBuilder).
 
 ## Changes in this fork (v2.2.0)
 
@@ -22,7 +26,7 @@ Edit defaults in `Mag-SuitBuilder/FilterFieldLimits.cs` if your shard goes highe
 
 ## Build
 
-From this directory:
+From this repository root:
 
 ```powershell
 dotnet build Mag-SuitBuilder\Mag-SuitBuilder.csproj -c Release
@@ -30,23 +34,7 @@ dotnet build Mag-SuitBuilder\Mag-SuitBuilder.csproj -c Release
 
 Output: `Mag-SuitBuilder\bin\Release\net8.0-windows\Mag-SuitBuilder.exe`
 
-## GitHub fork
-
-Cloud agent token could not create `Raajik/Mag-SuitBuilder` on GitHub automatically. To publish as a standalone repo:
-
-```bash
-# On GitHub: Fork https://github.com/Mag-nus/Mag-Plugins OR create empty Raajik/Mag-SuitBuilder
-cd tools/Mag-SuitBuilder
-git init
-git remote add origin git@github.com:Raajik/Mag-SuitBuilder.git
-git add .
-git commit -m "Raajik fork: dark theme + raised filter caps (v2.2.0)"
-git push -u origin main
-```
-
-This copy also lives in **ace-raaj-mods** under `tools/Mag-SuitBuilder/` for convenience.
-
 ## Upstream
 
 - Release: https://github.com/Mag-nus/Mag-Plugins/releases/tag/Mag-SuitBuilder-v2.1.4
-- Report upstream bugs to Mag-nus; report fork-specific issues to Raajik.
+- Report upstream bugs to Mag-nus; report fork-specific issues in this repo.

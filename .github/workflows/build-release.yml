@@ -1,0 +1,46 @@
+name: Build Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Build
+        run: dotnet build Mag-SuitBuilder/Mag-SuitBuilder.csproj -c Release
+
+      - name: Stage release files
+        shell: pwsh
+        run: |
+          $out = "Mag-SuitBuilder/bin/Release/net8.0-windows"
+          New-Item -ItemType Directory -Force -Path artifact | Out-Null
+          Copy-Item "$out/Mag-SuitBuilder.exe" artifact/
+          if (Test-Path "$out/Mag-SuitBuilder.dll") { Copy-Item "$out/Mag-SuitBuilder.dll" artifact/ }
+          if (Test-Path "$out/Mag-SuitBuilder.runtimeconfig.json") { Copy-Item "$out/Mag-SuitBuilder.runtimeconfig.json" artifact/ }
+          if (Test-Path "$out/Mag-SuitBuilder.deps.json") { Copy-Item "$out/Mag-SuitBuilder.deps.json" artifact/ }
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Mag-SuitBuilder-windows
+          path: artifact/
+
+      - name: Create GitHub Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: artifact/*
+          generate_release_notes: true
