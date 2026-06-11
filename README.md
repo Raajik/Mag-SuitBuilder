@@ -8,9 +8,9 @@ Original work © Mag-nus (LGPL 2.1 — see `license.md`). Fork changes © Raajik
 
 A convenience copy also lives in [ace-raaj-mods `tools/Mag-SuitBuilder/`](https://github.com/Raajik/ace-raaj-mods/tree/main/tools/Mag-SuitBuilder).
 
-## Changes in this fork (v2.2.0)
+## Changes in this fork (v2.2.1)
 
-- **Dark theme** — charcoal UI across main form, filters, grids, trees, tabs, and context menus.
+- **Soft dim theme** — eases harsh white surfaces with classic WinForms-style light grays; keeps native buttons and readable dark text.
 - **Raised filter caps** — upstream hard-limited filter text boxes (`MaxLength = 3` → 999 armor, single-digit cantrips/ratings). This fork allows:
   - Armor / wield level & skill: up to **6 digits** (default max **5000**)
   - Legendary / epic counts: up to **3 digits** (default max **99**)
