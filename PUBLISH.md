@@ -1,6 +1,16 @@
 # Publish to github.com/Raajik/Mag-SuitBuilder
 
-Cloud agent token cannot push to this repo. One-time publish from a machine with GitHub access:
+The Cursor cloud-agent GitHub App token can **read** this repo but returns **403 on push** (repo not in the app's write grant). Use one of these:
+
+## Option A — GitHub Actions sync (recommended)
+
+1. Create a fine-grained PAT with **Contents: Read and write** on `Raajik/Mag-SuitBuilder`.
+2. Add it to **ace-raaj-mods** repo secrets as `MAG_SUITBUILDER_SYNC_TOKEN`.
+3. Run workflow **Sync Mag-SuitBuilder** (or merge to `main` with changes under `tools/Mag-SuitBuilder/`).
+
+## Option B — manual push
+
+One-time publish from a machine with GitHub access:
 
 ```bash
 cd tools/Mag-SuitBuilder   # from ace-raaj-mods root
