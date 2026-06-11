@@ -9,7 +9,7 @@
     <Title>Mag-SuitBuilder</Title>
     <Authors>Mag-nus; Raajik (fork)</Authors>
     <Copyright>Copyright © 2012 Mag-nus; fork modifications © Raajik</Copyright>
-    <Version>2.2.1</Version>
+    <Version>2.2.2</Version>
   </PropertyGroup>
 
   <ItemGroup>

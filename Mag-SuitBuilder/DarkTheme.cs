@@ -1,6 +1,8 @@
 using System.Drawing;
 using System.Windows.Forms;
 
+using Mag_SuitBuilder.Spells;
+
 namespace Mag_SuitBuilder
 {
 	// Soft dim: toned-down classic WinForms grays, not a high-contrast dark theme.
@@ -36,9 +38,15 @@ namespace Mag_SuitBuilder
 		static void ApplyControl(Control control)
 		{
 			control.ForeColor = TextFore;
+			var skipChildren = false;
 
 			switch (control)
 			{
+				case CantripSelectorControl cantripSelector:
+					// Spell preset grid uses label BackColors for tier state; leave internals alone.
+					cantripSelector.BackColor = WindowBack;
+					skipChildren = true;
+					break;
 				case Button:
 					// Keep native Windows button chrome.
 					break;
@@ -58,11 +66,15 @@ namespace Mag_SuitBuilder
 					radioButton.BackColor = WindowBack;
 					radioButton.UseVisualStyleBackColor = true;
 					break;
-				case Label:
-					control.BackColor = Color.Transparent;
+				case Label label:
+					if (!IsAccentLabel(label))
+						label.BackColor = Color.Transparent;
 					break;
 				case DataGridView dataGridView:
-					ApplyDataGridView(dataGridView);
+					if (IsCantripSelectorGrid(dataGridView))
+						ApplyCantripSpellGrid(dataGridView);
+					else
+						ApplyDataGridView(dataGridView);
 					break;
 				case TreeView treeView:
 					treeView.BackColor = InputBack;
@@ -103,13 +115,50 @@ namespace Mag_SuitBuilder
 					break;
 			}
 
-			if (control.HasChildren)
+			if (!skipChildren && control.HasChildren)
 				Apply(control);
+		}
+
+		static bool IsAccentLabel(Label label)
+		{
+			var backColor = label.BackColor;
+			if (backColor.A == 0)
+				return false;
+
+			return backColor != SystemColors.Control
+				&& backColor != WindowBack
+				&& backColor != Color.Transparent;
+		}
+
+		static bool IsCantripSelectorGrid(DataGridView dataGridView)
+		{
+			for (var parent = dataGridView.Parent; parent != null; parent = parent.Parent)
+			{
+				if (parent is CantripSelectorControl)
+					return true;
+			}
+
+			return false;
 		}
 
 		static bool IsInputControl(Control control)
 		{
 			return control is TextBox or ComboBox or TreeView or ListBox or NumericUpDown;
+		}
+
+		static void ApplyCantripSpellGrid(DataGridView dataGridView)
+		{
+			// Match upstream behavior: selection color equals cell back so tier colors read clearly.
+			var cellStyle = new DataGridViewCellStyle(dataGridView.DefaultCellStyle)
+			{
+				BackColor = InputBack,
+				ForeColor = TextFore,
+				SelectionBackColor = InputBack,
+				SelectionForeColor = TextFore,
+			};
+			dataGridView.DefaultCellStyle = cellStyle;
+			dataGridView.BackgroundColor = InputBack;
+			dataGridView.GridColor = GridLine;
 		}
 
 		static void ApplyDataGridView(DataGridView dataGridView)
