@@ -1,0 +1,102 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <PlatformTarget>x64</PlatformTarget>
+    <RootNamespace>Mag_SuitBuilder</RootNamespace>
+    <Title>Mag-SuitBuilder</Title>
+    <Authors>Mag-nus; Raajik (fork)</Authors>
+    <Copyright>Copyright © 2012 Mag-nus; fork modifications © Raajik</Copyright>
+    <Version>2.2.0</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\Shared\Constants\BoolValueKey.cs">
+      <Link>Shared\Constants\BoolValueKey.cs</Link>
+    </Compile>
+    <Compile Include="..\Shared\Constants\CoverageMask.cs">
+      <Link>Shared\Constants\CoverageMask.cs</Link>
+    </Compile>
+    <Compile Include="..\Shared\Constants\Dictionaries.cs">
+      <Link>Shared\Constants\Dictionaries.cs</Link>
+    </Compile>
+    <Compile Include="..\Shared\Constants\DoubleValueKey.cs">
+      <Link>Shared\Constants\DoubleValueKey.cs</Link>
+    </Compile>
+    <Compile Include="..\Shared\Constants\EphemeralAttribute.cs">
+      <Link>Shared\Constants\EphemeralAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\Shared\Constants\EquipMask.cs">
+      <Link>Shared\Constants\EquipMask.cs</Link>
+    </Compile>
+    <Compile Include="..\Shared\Constants\IntValueKey.cs">
+      <Link>Shared\Constants\IntValueKey.cs</Link>
+    </Compile>
+    <Compile Include="..\Shared\Constants\ItemType.cs">
+      <Link>Shared\Constants\ItemType.cs</Link>
+    </Compile>
+    <Compile Include="..\Shared\Constants\SendOnLoginAttribute.cs">
+      <Link>Shared\Constants\SendOnLoginAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\Shared\Constants\ServerOnlyAttribute.cs">
+      <Link>Shared\Constants\ServerOnlyAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\Shared\Constants\StringValueKey.cs">
+      <Link>Shared\Constants\StringValueKey.cs</Link>
+    </Compile>
+    <Compile Include="..\Shared\Constants\WeenieType.cs">
+      <Link>Shared\Constants\WeenieType.cs</Link>
+    </Compile>
+    <Compile Include="..\Shared\ItemInfo.cs">
+      <Link>Shared\ItemInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\Shared\MyWorldObject.cs">
+      <Link>Shared\MyWorldObject.cs</Link>
+    </Compile>
+    <Compile Include="..\Shared\ObjectClass.cs">
+      <Link>Shared\ObjectClass.cs</Link>
+    </Compile>
+    <Compile Include="..\Shared\SerializableDictionary.cs">
+      <Link>Shared\SerializableDictionary.cs</Link>
+    </Compile>
+    <Compile Include="..\Shared\SortableBindingList.cs">
+      <Link>Shared\SortableBindingList.cs</Link>
+    </Compile>
+    <Compile Include="..\Shared\Spells\Spell.cs">
+      <Link>Shared\Spells\Spell.cs</Link>
+    </Compile>
+    <Compile Include="..\Shared\Spells\SpellTools.cs">
+      <Link>Shared\Spells\SpellTools.cs</Link>
+    </Compile>
+    <Compile Update="Equipment\FiltersControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Update="Spells\CantripSelectorControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Equipment\EquipmentPieceControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="..\Shared\Spells\Spells.csv">
+      <Link>Shared\Spells\Spells.csv</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+</Project>
